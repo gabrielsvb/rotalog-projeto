@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RotaLog - Canal de Logística</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+<script>tailwind.config={theme:{extend:{colors:{navy:'#1A365D',deep:'#10223d',amber:'#F59E0B',leaf:'#2F855A',paper:'#F5F7FA'},fontFamily:{display:['"Bricolage Grotesque"','sans-serif'],body:['"IBM Plex Sans"','sans-serif']}}}}</script>
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:'IBM Plex Sans',sans-serif;background:#F5F7FA;color:#1f2937}
+h1,h2,h3,.font-display{font-family:'Bricolage Grotesque',sans-serif}
+:focus-visible{outline:3px solid #F59E0B;outline-offset:2px}
+.stripe{background-image:repeating-linear-gradient(135deg,#F59E0B 0 14px,#10223d 14px 28px)}
+@keyframes slide{from{transform:translateX(-12px);opacity:0}to{transform:none;opacity:1}}
+.hero-row{animation:slide .6s ease both}
+.hero-row:nth-child(2){animation-delay:.15s}.hero-row:nth-child(3){animation-delay:.3s}
+@media (prefers-reduced-motion:reduce){.hero-row{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="sticky top-0 z-40 bg-navy text-white shadow-lg">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+    <a href="#inicio" class="flex items-center gap-2 font-display font-extrabold text-lg">
+      <span class="grid place-items-center w-9 h-9 rounded bg-amber text-deep"><i data-lucide="truck" class="w-5 h-5"></i></span>
+      <span>RotaLog <span class="font-medium text-blue-200 hidden sm:inline">- Canal de Logística</span></span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-1 text-sm" aria-label="Principal">
+      <a class="px-3 py-2 rounded hover:bg-white/10" href="#inicio">Início</a>
+      <a class="px-3 py-2 rounded hover:bg-white/10" href="#noticias">Notícias &amp; Tendências</a>
+      <a class="px-3 py-2 rounded hover:bg-white/10" href="#praticas">Boas Práticas</a>
+      <a class="px-3 py-2 rounded hover:bg-white/10" href="#projetos">Projetos Operacionais</a>
+      <a class="px-3 py-2 rounded hover:bg-white/10" href="#documentos">Documentos &amp; Relatórios</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button id="loginBtn" class="flex items-center gap-2 bg-amber text-deep font-semibold text-sm px-3 py-2 rounded hover:bg-yellow-400">
+        <i data-lucide="log-in" class="w-4 h-4"></i><span id="loginLabel" class="hidden sm:inline">Login / Área do Colaborador</span><span class="sm:hidden">Login</span>
+      </button>
+      <button id="menuBtn" class="lg:hidden p-2 rounded hover:bg-white/10" aria-label="Abrir menu" aria-expanded="false"><i data-lucide="menu" class="w-6 h-6"></i></button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="hidden lg:hidden bg-deep px-4 pb-3 text-sm flex-col" aria-label="Menu móvel">
+    <a class="block py-2" href="#inicio">Início</a><a class="block py-2" href="#noticias">Notícias &amp; Tendências</a>
+    <a class="block py-2" href="#praticas">Boas Práticas</a><a class="block py-2" href="#projetos">Projetos Operacionais</a>
+    <a class="block py-2" href="#documentos">Documentos &amp; Relatórios</a>
+  </nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="inicio" class="bg-navy text-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24">
+    <div class="max-w-3xl">
+      <h1 class="hero-row text-4xl md:text-6xl font-extrabold leading-[1.05]">Cada entrega começa com uma boa informação.</h1>
+      <p class="hero-row mt-5 text-lg text-blue-100 max-w-xl leading-relaxed">Conceitos técnicos explicados sem rodeios, práticas sustentáveis, notícias do setor e projetos feitos por quem opera a logística no dia a dia.</p>
+      <div class="hero-row mt-8 flex flex-wrap gap-3">
+        <a href="#noticias" class="bg-amber text-deep font-semibold px-5 py-3 rounded hover:bg-yellow-400 flex items-center gap-2"><i data-lucide="compass" class="w-5 h-5"></i>Explorar Conteúdos</a>
+        <button id="sendProject" class="border border-white/40 font-semibold px-5 py-3 rounded hover:bg-white/10 flex items-center gap-2"><i data-lucide="upload" class="w-5 h-5"></i>Enviar Projeto Operacional</button>
+      </div>
+    </div>
+  </div>
+  <div class="stripe h-2"></div>
+</section>
+
+<!-- DOCUMENTOS -->
+<section id="documentos" class="max-w-6xl mx-auto px-4 py-16">
+  <div class="flex items-end justify-between flex-wrap gap-2">
+    <div><h2 class="text-3xl font-extrabold text-navy">Documentos e relatórios mais populares do dia</h2>
+    <p class="text-slate-600 mt-1">Os arquivos que seus colegas mais baixaram nas últimas 24 horas.</p></div>
+  </div>
+  <div id="docs" class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+</section>
+
+<!-- NOTÍCIAS -->
+<section id="noticias" class="bg-white border-y border-slate-200">
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <h2 class="text-3xl font-extrabold text-navy">Notícias e tendências</h2>
+    <div id="filters" class="mt-5 flex flex-wrap gap-2" role="group" aria-label="Filtrar por tema"></div>
+    <div id="articles" class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- BOAS PRÁTICAS -->
+<section id="praticas" class="max-w-6xl mx-auto px-4 py-16">
+  <h2 class="text-3xl font-extrabold text-navy">Boas práticas operacionais</h2>
+  <p class="text-slate-600 mt-1 max-w-2xl">Hábitos simples que reduzem erro, desperdício e emissões. Toque para ver o passo a passo.</p>
+  <div id="practices" class="mt-8 grid md:grid-cols-3 gap-4 items-start"></div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos" class="bg-deep text-white">
+  <div class="max-w-6xl mx-auto px-4 py-16">
+    <div class="flex items-end justify-between flex-wrap gap-4">
+      <div><h2 class="text-3xl font-extrabold">Protagonismo e projetos colaborativos</h2>
+      <p class="text-blue-200 mt-1 max-w-2xl">Cases de sucesso, trabalhos de aprendizes e projetos das equipes de Operações Logísticas.</p></div>
+      <button id="sendProject2" class="bg-amber text-deep font-semibold px-4 py-2 rounded hover:bg-yellow-400 flex items-center gap-2"><i data-lucide="plus" class="w-4 h-4"></i>Enviar projeto</button>
+    </div>
+    <div id="projects" class="mt-8 grid md:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- KPI -->
+<section class="max-w-6xl mx-auto px-4 py-12">
+  <div class="rounded-lg bg-white border border-slate-200 p-5 md:p-6 grid md:grid-cols-4 gap-5 items-center">
+    <div class="flex items-center gap-2 font-display font-bold text-navy"><span class="relative flex w-3 h-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-leaf opacity-60"></span><span class="relative inline-flex rounded-full w-3 h-3 bg-leaf"></span></span>Painel de acesso ao vivo</div>
+    <div><div class="text-sm text-slate-500">Logins ativos hoje</div><div id="kLogins" class="text-3xl font-display font-extrabold text-navy">142</div></div>
+    <div><div class="text-sm text-slate-500">Documento mais acessado</div><div id="kDoc" class="font-semibold text-navy break-all">Guia_WMS_2026.pdf</div></div>
+    <div><div class="text-sm text-slate-500">Tempo médio de leitura</div><div id="kRead" class="text-3xl font-display font-extrabold text-navy">3,5 min</div></div>
+  </div>
+</section>
+</main>
+
+<footer class="bg-navy text-blue-100">
+  <div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
+    <div><div class="font-display font-extrabold text-white text-lg">RotaLog</div>
+    <p class="mt-2 text-sm leading-relaxed">Portal interno de comunicação e informação sobre logística, feito por e para quem move a operação.</p></div>
+    <div><div class="font-semibold text-white">Links úteis</div>
+    <ul class="mt-2 space-y-1 text-sm"><li><a class="hover:text-amber" href="#documentos">Documentos &amp; Relatórios</a></li><li><a class="hover:text-amber" href="#praticas">Boas Práticas</a></li><li><a class="hover:text-amber" href="#projetos">Projetos Operacionais</a></li><li><a class="hover:text-amber" href="#">Política de privacidade</a></li></ul></div>
+    <form id="newsForm">
+      <label for="email" class="font-semibold text-white">Assine a newsletter de logística</label>
+      <div class="mt-2 flex gap-2"><input id="email" type="email" required placeholder="voce@empresa.com" class="flex-1 min-w-0 rounded px-3 py-2 text-slate-900"><button class="bg-amber text-deep font-semibold px-4 rounded hover:bg-yellow-400">Assinar</button></div>
+      <p class="text-xs mt-2 text-blue-300">Um resumo por semana, sem spam.</p>
+    </form>
+  </div>
+  <div class="border-t border-white/10 text-center text-xs py-4 text-blue-300">© 2026 RotaLog - Canal de Logística. Todos os direitos reservados.</div>
+</footer>
+
+<!-- MODAL -->
+<div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4" role="dialog" aria-modal="true">
+  <div class="bg-white rounded-lg w-full max-w-md p-6 relative">
+    <button id="closeModal" class="absolute top-3 right-3 p-1 rounded hover:bg-slate-100" aria-label="Fechar"><i data-lucide="x" class="w-5 h-5"></i></button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 hidden bg-deep text-white px-4 py-3 rounded shadow-lg text-sm" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const ic=()=>lucide.createIcons();
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.remove('hidden');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.add('hidden'),2600)};
+
+// Documentos
+const docs=[
+ {n:'Guia_WMS_2026.pdf',t:'Guia de implantação e uso do WMS',d:1840,s:'4,2 MB'},
+ {n:'Manual_Recebimento.pdf',t:'Manual de recebimento e conferência',d:1275,s:'2,1 MB'},
+ {n:'Relatorio_Sustentabilidade_Q3.pdf',t:'Relatório de emissões e logística verde',d:960,s:'6,8 MB'},
+ {n:'Checklist_Seguranca_Docas.pdf',t:'Checklist de segurança em docas',d:742,s:'0,9 MB'}];
+function renderDocs(){
+ $('#docs').innerHTML=docs.map((x,i)=>`<article class="bg-white border border-slate-200 rounded-lg p-4 flex flex-col">
+  <div class="flex items-center gap-2 text-amber"><i data-lucide="file-text" class="w-6 h-6"></i><span class="text-xs text-slate-500">${x.s}</span></div>
+  <h3 class="mt-3 font-bold text-navy leading-snug">${x.t}</h3>
+  <p class="text-xs text-slate-500 mt-1 break-all">${x.n}</p>
+  <div class="mt-auto pt-4 flex items-center justify-between">
+   <span class="text-sm text-slate-600 flex items-center gap-1"><i data-lucide="download" class="w-4 h-4"></i><b id="dc${i}">${x.d.toLocaleString('pt-BR')}</b></span>
+   <button data-i="${i}" class="dl bg-navy text-white text-sm px-3 py-1.5 rounded hover:bg-deep">Baixar</button></div></article>`).join('');
+ ic();
+}
+$('#docs').addEventListener('click',e=>{const b=e.target.closest('.dl');if(!b)return;
+ const i=+b.dataset.i;docs[i].d++;$('#dc'+i).textContent=docs[i].d.toLocaleString('pt-BR');
+ const top=[...docs].sort((a,b)=>b.d-a.d)[0];$('#kDoc').textContent=top.n;
+ toast('Download simulado: '+docs[i].n)});
+
+// Artigos
+const arts=[
+ {c:'IA',t:'Como a inteligência artificial está prevendo a demanda e cortando rotas',r:4,i:'brain-circuit',x:'Modelos preditivos já antecipam picos de pedidos e reduzem quilômetros rodados.'},
+ {c:'Logística Verde',t:'Frota elétrica de última milha: o que muda na operação',r:3,i:'leaf',x:'Autonomia, pontos de recarga e custo total de propriedade em perspectiva.'},
+ {c:'Estoque',t:'Curva ABC na prática: quando revisar a classificação do estoque',r:3,i:'boxes',x:'Um roteiro simples para ajustar endereçamento e giro sem parar a operação.'},
+ {c:'Boas Práticas',t:'Inventário cíclico sem dor de cabeça: 5 passos para começar',r:5,i:'clipboard-check',x:'Como substituir o inventário geral por contagens menores e mais frequentes.'},
+ {c:'Logística Verde',t:'Embalagens retornáveis reduzem custo e resíduo',r:2,i:'recycle',x:'Casos de empresas que fecharam o ciclo de reuso com fornecedores.'},
+ {c:'IA',t:'Visão computacional na conferência de cargas',r:4,i:'scan-eye',x:'Câmeras e algoritmos já detectam avarias e divergências no recebimento.'}];
+let filter='Todos';
+const cats=['Todos',...new Set(arts.map(a=>a.c))];
+function renderArts(){
+ $('#filters').innerHTML=cats.map(c=>`<button data-c="${c}" aria-pressed="${c===filter}" class="f px-4 py-1.5 rounded-full text-sm border ${c===filter?'bg-navy text-white border-navy':'bg-white text-navy border-slate-300 hover:border-navy'}">${c}</button>`).join('');
+ $('#articles').innerHTML=arts.filter(a=>filter==='Todos'||a.c===filter).map(a=>`<article class="border border-slate-200 rounded-lg overflow-hidden bg-paper flex flex-col">
+  <div class="h-28 bg-navy grid place-items-center text-amber"><i data-lucide="${a.i}" class="w-10 h-10"></i></div>
+  <div class="p-4 flex flex-col flex-1"><span class="text-sm font-semibold text-leaf">${a.c}</span>
+  <h3 class="mt-1 font-bold text-navy leading-snug">${a.t}</h3><p class="mt-2 text-sm text-slate-600">${a.x}</p>
+  <div class="mt-auto pt-4 flex items-center justify-between text-sm text-slate-500"><span class="flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4"></i>Leitura de ${a.r} min</span>
+  <button class="rd font-semibold text-navy hover:text-amber" data-r="${a.r}">Ler artigo</button></div></div></article>`).join('');
+ ic();
+}
+$('#filters').addEventListener('click',e=>{const b=e.target.closest('.f');if(b){filter=b.dataset.c;renderArts()}});
+$('#articles').addEventListener('click',e=>{const b=e.target.closest('.rd');if(!b)return;
+ reads.push(+b.dataset.r);$('#kRead').textContent=(reads.reduce((a,b)=>a+b)/reads.length).toFixed(1).replace('.',',')+' min';toast('Artigo aberto (simulação)')});
+const reads=[3.5,3.5,3.5];
+
+// Boas práticas
+const prac=[
+ {t:'Recebimento sem divergência',i:'scan-barcode',s:['Confira nota fiscal e pedido antes de descarregar','Registre avarias com foto na hora','Libere o endereço só após a conferência']},
+ {t:'Estoque organizado por giro',i:'layout-grid',s:['Itens classe A perto da expedição','Revise a curva ABC todo trimestre','Use FIFO ou FEFO conforme a validade']},
+ {t:'Operação mais sustentável',i:'leaf',s:['Consolide cargas para reduzir viagens','Priorize embalagens retornáveis','Meça as emissões por rota']}];
+$('#practices').innerHTML=prac.map(p=>`<details class="bg-white border border-slate-200 rounded-lg p-4 group"><summary class="cursor-pointer flex items-center gap-3 font-bold text-navy list-none"><span class="grid place-items-center w-9 h-9 rounded bg-amber/20 text-amber"><i data-lucide="${p.i}" class="w-5 h-5"></i></span>${p.t}</summary>
+ <ul class="mt-3 space-y-2 text-sm text-slate-700">${p.s.map(x=>`<li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-leaf mt-0.5 shrink-0"></i>${x}</li>`).join('')}</ul></details>`).join('');
+
+// Projetos
+const projs=[
+ {t:'Redução de 22% em avarias na expedição',a:'Equipe de Operações - CD Guarulhos',tag:'Case de sucesso',i:'trophy'},
+ {t:'Mapa digital de endereçamento do estoque',a:'Aprendizes de Logística - Turma 2026',tag:'Aprendizes',i:'map'},
+ {t:'Roteirização semanal com planilha inteligente',a:'Equipe de Transporte',tag:'Operações',i:'route'}];
+$('#projects').innerHTML=projs.map(p=>`<article class="bg-navy border border-white/10 rounded-lg p-5">
+ <div class="flex items-center justify-between"><i data-lucide="${p.i}" class="w-7 h-7 text-amber"></i><span class="text-xs bg-white/10 px-2 py-1 rounded">${p.tag}</span></div>
+ <h3 class="mt-4 font-bold text-lg leading-snug">${p.t}</h3><p class="mt-2 text-sm text-blue-200">${p.a}</p></article>`).join('');
+
+// Modal
+const modal=$('#modal'),body=$('#modalBody');let loggedIn=false;
+const open=h=>{body.innerHTML=h;modal.classList.replace('hidden','flex');ic();const f=body.querySelector('input');f&&f.focus()};
+const close=()=>modal.classList.replace('flex','hidden');
+$('#closeModal').onclick=close;modal.onclick=e=>{if(e.target===modal)close()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+const inp='class="w-full border border-slate-300 rounded px-3 py-2 mt-1"';
+$('#loginBtn').onclick=()=>{ if(loggedIn){loggedIn=false;$('#loginLabel').textContent='Login / Área do Colaborador';toast('Você saiu da conta');return}
+ open(`<h3 class="text-xl font-bold text-navy">Área do colaborador</h3><p class="text-sm text-slate-600 mt-1">Entre com seu e-mail corporativo.</p>
+ <form id="lf" class="mt-4 space-y-3"><label class="block text-sm font-medium">E-mail<input required type="email" ${inp}></label>
+ <label class="block text-sm font-medium">Senha<input required type="password" minlength="4" ${inp}></label>
+ <button class="w-full bg-navy text-white font-semibold py-2 rounded hover:bg-deep">Entrar</button></form>`);
+ $('#lf').onsubmit=e=>{e.preventDefault();loggedIn=true;close();$('#loginLabel').textContent='Sair (colaborador)';$('#kLogins').textContent=+$('#kLogins').textContent+1;toast('Login realizado com sucesso')}};
+const sendP=()=>{open(`<h3 class="text-xl font-bold text-navy">Enviar projeto operacional</h3>
+ <form id="pf" class="mt-4 space-y-3"><label class="block text-sm font-medium">Título do projeto<input required ${inp}></label>
+ <label class="block text-sm font-medium">Equipe ou autor<input required ${inp}></label>
+ <label class="block text-sm font-medium">Resumo e resultados<textarea required rows="3" ${inp}></textarea></label>
+ <button class="w-full bg-amber text-deep font-semibold py-2 rounded hover:bg-yellow-400">Enviar para avaliação</button></form>`);
+ $('#pf').onsubmit=e=>{e.preventDefault();close();toast('Projeto enviado para avaliação')}};
+$('#sendProject').onclick=sendP;$('#sendProject2').onclick=sendP;
+$('#newsForm').onsubmit=e=>{e.preventDefault();e.target.reset();toast('Inscrição confirmada. Obrigado!')};
+$('#menuBtn').onclick=()=>{const m=$('#mobileNav'),o=m.classList.toggle('hidden');m.classList.toggle('flex',!o);$('#menuBtn').setAttribute('aria-expanded',!o)};
+$('#mobileNav').onclick=e=>{if(e.target.tagName==='A'){$('#mobileNav').classList.add('hidden');$('#mobileNav').classList.remove('flex')}};
+
+// KPI ao vivo
+setInterval(()=>{const k=$('#kLogins');k.textContent=Math.max(100,+k.textContent+Math.round(Math.random()*4-1.5))},3500);
+
+renderDocs();renderArts();ic();
+</script>
+</body>
+</html>
